@@ -19,6 +19,9 @@ public class ItemRepositoryImpl implements ItemRepository{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	/**
+	 * This method will take itemName and gets all the Item details
+	 */
 	@Override
 	public List<Item> getItemDetails(final String itemName) {
 

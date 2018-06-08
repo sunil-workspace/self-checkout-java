@@ -2,7 +2,6 @@ package com.selfcheckout.service.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.sql.Date;
 import java.util.List;
 
 import org.json.JSONArray;
