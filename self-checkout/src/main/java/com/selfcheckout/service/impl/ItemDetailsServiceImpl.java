@@ -47,6 +47,7 @@ public class ItemDetailsServiceImpl implements ItemDetailsService {
 				jsonObj.put("NAME", item.getNAME());
 				jsonObj.put("PRICE", item.getPRICE());
 				jsonObj.put("QUANTITY", 1);
+				jsonObj.put("WEIGHT", item.getWEIGHT());
 			}
 		} catch(SelfCheckoutException | JSONException e) {
 			e.printStackTrace();

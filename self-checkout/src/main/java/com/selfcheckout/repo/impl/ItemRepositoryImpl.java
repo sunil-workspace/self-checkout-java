@@ -25,7 +25,7 @@ public class ItemRepositoryImpl implements ItemRepository{
 	@Override
 	public List<Item> getItemDetails(final String itemName) {
 
-		List<Item> itemDetails = jdbcTemplate.query("SELECT NAME, PRICE, WEIGHT FROM items_price WHERE ITEM_NAME = '" + itemName +"'", (rs, rowNum) -> 
+		List<Item> itemDetails = jdbcTemplate.query("SELECT NAME, PRICE, WEIGHT FROM items_price WHERE NAME = '" + itemName +"'", (rs, rowNum) -> 
 		new Item(rs.getString("NAME"), rs.getDouble("PRICE"), rs.getDouble("WEIGHT")));
 		
 		

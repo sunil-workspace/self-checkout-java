@@ -1,6 +1,5 @@
 package com.selfcheckout.controller;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -37,6 +36,7 @@ public class SelfCheckoutController {
 		HttpHeaders headers = new HttpHeaders();
 		try {
 			jsonObj = itemDetailsService.getItemDetailsFromDB(itemName);
+			logger.info("Response Json: " + jsonObj);
 		} catch (SelfCheckoutException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +52,7 @@ public class SelfCheckoutController {
 		HttpHeaders headers = new HttpHeaders();
 		try {
 			jsonObj = validateMemberIdService.verifyMemberIdNew(Integer.parseInt(memberNumber));
-			
+
 		} catch(NumberFormatException | ClassCastException | NullPointerException e) {
 			logger.error("Exception occured while constructing JSON Object " + e.getMessage());
 			try {
@@ -68,14 +68,14 @@ public class SelfCheckoutController {
 		logger.info("End of memberIdValidator");
 		return new ResponseEntity<>(jsonObj.toString(), headers, HttpStatus.OK);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST, value="/postItemDetails", consumes="application/json, application/xml", produces="application/json")
+
+	@RequestMapping(method=RequestMethod.POST, value="/postItemDetails", consumes= {"application/json", "application/xml"}, produces="application/json")
 	public ResponseEntity<?> postItemDetails(@RequestBody String itemsDetails) {
 		logger.info("ItemDetails Received: " + itemsDetails);
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		JSONObject responseJson = new JSONObject();
-		
+
 		try {
 			responseJson = itemDetailsService.postItemDetailsToDB(itemsDetails);
 		} catch (SelfCheckoutException e) {
